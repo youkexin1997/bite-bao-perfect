@@ -1,71 +1,75 @@
-import React from "react";
 
-export default function HomePage() {
+import Head from "next/head";
+
+export default function Home() {
   return (
-    <div className="bg-white text-[#2c2c2c] font-sans">
-      <nav className="flex items-center justify-between px-6 py-3 bg-white shadow">
-        <div className="flex items-center gap-2">
-          <img src="/logo.jpg" alt="Logo" className="h-8 w-8 rounded-full" />
-          <span className="text-xl font-bold text-[#e63946]">BITE BAO</span>
-        </div>
-        <div className="space-x-4">
-          <a href="#menu" className="text-gray-700 hover:text-[#e63946]">Menu</a>
-          <a href="#order" className="bg-[#e63946] text-white px-4 py-2 rounded">Order Now</a>
-        </div>
-      </nav>
+    <div className="text-gray-800 font-sans">
+      <Head>
+        <title>Bite Bao</title>
+      </Head>
 
-      <section className="relative w-full h-[80vh] bg-cover bg-center" style={{ backgroundImage: 'url(/soup-dumpling.jpg)' }}>
-        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
-        <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4">
-          <h2 className="text-4xl font-bold mb-2">Tradition Meets Flavor.</h2>
-          <p className="text-lg mb-4">Balanced by Wellness.</p>
-          <a href="#menu" className="bg-white text-[#e63946] px-6 py-3 rounded shadow">See Menu</a>
+      <header className="bg-white shadow-sm">
+        <div className="container mx-auto px-4 py-3 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <img src="/logo.jpg" alt="Logo" className="h-10 w-10 rounded-full" />
+            <h1 className="text-2xl font-bold text-primary">Bite Bao</h1>
+          </div>
+          <nav className="space-x-6 hidden md:block">
+            <a href="#menu" className="hover:text-primary">Menu</a>
+            <a href="#about" className="hover:text-primary">About</a>
+            <a href="#order" className="hover:text-primary">Order</a>
+          </nav>
+        </div>
+      </header>
+
+      <section className="relative bg-cover bg-center h-[80vh] flex items-center justify-center text-white text-center" style={{ backgroundImage: "url('/soup-dumpling.jpg')" }}>
+        <div className="bg-black bg-opacity-50 absolute inset-0"></div>
+        <div className="relative z-10">
+          <h2 className="text-5xl font-bold mb-4">Classic Chinese Flavor. Modern Healthy Twist.</h2>
+          <p className="text-xl mb-6"></p>
+          <a href="#menu" className="bg-white text-primary px-6 py-3 rounded font-semibold">See Menu</a>
         </div>
       </section>
 
-      <section id="menu" className="py-16 px-6">
-        <h3 className="text-3xl font-semibold text-center mb-10">Our Favorites</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div>
-            <img src="/soup-dumpling.jpg" alt="Soup Dumplings" className="rounded-xl shadow mb-4" />
-            <h4 className="text-lg font-semibold text-center">Soup Dumplings</h4>
-          </div>
-          <div>
-            <img src="/general-tso.jpg" alt="General Tso" className="rounded-xl shadow mb-4" />
-            <h4 className="text-lg font-semibold text-center">General Tso's Chicken</h4>
-          </div>
-          <div>
-            <img src="/fitness-meal.jpg" alt="Fitness Meal" className="rounded-xl shadow mb-4" />
-            <h4 className="text-lg font-semibold text-center">Fitness Meal</h4>
-          </div>
+      <section id="menu" className="py-16 bg-gray-50 text-center">
+        <h3 className="text-3xl font-bold mb-10">Signature Dishes</h3>
+        <div className="grid md:grid-cols-3 gap-8 px-4">
+          {["soup-dumpling", "general-tso", "fitness-meal"].map((dish, i) => (
+            <div key={i} className="bg-white shadow rounded-xl overflow-hidden">
+              <img src={`/${dish}.jpg`} alt={dish} className="w-full h-64 object-cover" />
+              <div className="p-4">
+                <h4 className="text-xl font-semibold capitalize">{dish.replace("-", " ")}</h4>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
-      <section id="about" className="flex flex-col md:flex-row items-center py-16 px-6">
-        <img src="/fitness-meal.jpg" className="w-full md:w-1/2 rounded shadow mb-6 md:mb-0" alt="Fitness Meals" />
-        <div className="md:ml-10 space-y-4">
-          <h3 className="text-2xl font-semibold">About Bite Bao</h3>
+      <section id="about" className="py-20 px-4 bg-white flex flex-col md:flex-row items-center max-w-6xl mx-auto">
+        <img src="/fitness-meal.jpg" alt="Fitness Meal" className="w-full md:w-1/2 rounded-xl shadow mb-6 md:mb-0" />
+        <div className="md:ml-12 space-y-5">
+          <h3 className="text-2xl font-bold">About Bite Bao</h3>
           <p className="text-lg leading-relaxed">
-            At Bite Bao, we elevate traditional American Chinese cuisine. From handcrafted soup dumplings to health-conscious meals, we bring authentic flavor with a modern twist.
+            Bite Bao brings modern health to traditional Chinese-American cuisine. Handcrafted dumplings, balanced meals, and bold flavor—all made fresh for your lifestyle.
           </p>
-          <a href="#order" className="inline-block bg-[#e63946] text-white px-4 py-2 rounded">Order Now</a>
+          <a href="#order" className="inline-block bg-primary text-white px-6 py-3 rounded">Order Now</a>
         </div>
       </section>
 
-      <section className="bg-gray-50 py-12 px-6 text-center space-y-4">
-        <p className="text-lg">📍 1080 New York Ave, Huntington Station, NY 11746</p>
-        <p className="text-lg">🕒 Mon–Sun: 11 AM – 9 PM</p>
-        <p className="text-lg">📞 347-556-8273</p>
+      <section className="bg-gray-100 py-12 text-center text-lg space-y-2">
+        <p>📍 1080 New York Ave, Huntington Station, NY 11746</p>
+        <p>📞 347-556-8273</p>
+        <p>🕒 Open Daily: 11AM – 9PM</p>
       </section>
 
-      <footer className="py-8 px-6 text-center">
-        <p className="mb-4">Love us? Leave a review and get a FREE appetizer!</p>
-        <div className="space-x-4">
-          <a href="https://yelp.com" className="underline text-[#e63946]">Yelp</a>
-          <a href="https://ubereats.com" className="underline text-[#e63946]">UberEats</a>
-          <a href="https://doordash.com" className="underline text-[#e63946]">DoorDash</a>
+      <footer className="py-10 text-center bg-white text-sm">
+        <p className="mb-3">⭐ Leave us a review on Yelp and get a free appetizer!</p>
+        <div className="space-x-4 text-primary font-semibold">
+          <a href="https://yelp.com" target="_blank">Yelp</a>
+          <a href="https://ubereats.com" target="_blank">UberEats</a>
+          <a href="https://doordash.com" target="_blank">DoorDash</a>
         </div>
-        <p className="mt-6 text-sm text-gray-500">© 2025 Bite Bao. All rights reserved.</p>
+        <p className="mt-6 text-gray-400">© 2025 Bite Bao. All rights reserved.</p>
       </footer>
     </div>
   );
